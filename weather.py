@@ -1,5 +1,9 @@
 from codecs import latin_1_decode
 import requests
+import datetime
+
+
+ct = datetime.datetime.now()
 
 key = 'a19913b0ea32583092ca45f0af7e0e1e'
 
@@ -37,27 +41,35 @@ print(f"Weather report for: {city}, {country}")
 print(f"                    {weather}")
 print(f"                    {temp} °C")
 print(f"                    {precp}%")
+print(f"                    {ct}")
 
-f = open('weather.html','w')
+
+f = open('/bin/weather.html','w')
     
 html_data = f"""
+
 <table border="1">
 <tr>
     <td>City</td>
     <td>Country</td>
+    <td>Time</td>
     <td>Temp</td>
     <td>Description</td>
     <td>Humidity</td>
+    <td>Precp</td>
 </tr>
 <tr>
     <td>Guadalajara</td>
     <td>{str(list_of_data['sys']['country'])}</td>
+    <td>{(ct)}</td>
     <td>{str(list_of_data['main']['temp']) + '°C'}</td>
     <td>{str(list_of_data['weather'][0]['description'])}</td>
     <td>{str(list_of_data['main']['humidity'])}</td>
+    <td>{str(precp) + '%'}</td>
 </tr>
 
 </table>
 """
+
 f.write(html_data)
 f.close()
